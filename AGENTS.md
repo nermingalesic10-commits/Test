@@ -19,7 +19,7 @@ After STOP 1, help the student propose and approve the six TARGET lines and one 
 
 ## My standing rule
 
-[One observable, student-approved rule that protects this project's purpose or experience.]
+Every stats view must visibly show its “Last updated” date and whether its data is sample or manually updated, so managers never mistake stale or fictional data for live results.
 
 ## Workflow
 
