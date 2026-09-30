@@ -3,76 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A colorful, manual internship application tracker with career planning tools.">
-  <title>OrbitPath · Applications</title>
+  <meta name="description" content="A board-game-inspired career map for internship skill and milestone progress.">
+  <title>OrbitPath · Career Map</title>
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <a class="skip-link" href="#applications">Skip to application tracker</a>
+  <a class="skip-link" href="#career-map">Skip to career map</a>
   <header class="app-header shell">
     <div class="topline">
-      <a class="brand" href="index.html" aria-label="OrbitPath Applications home"><span class="brand-mark" aria-hidden="true">↗</span>OrbitPath</a>
+      <a class="brand" href="index.html" aria-label="OrbitPath Career Map home"><span class="brand-mark" aria-hidden="true">↗</span>OrbitPath</a>
       <div class="workspace"><strong>Sample workspace</strong><br>Static demo · no account required</div>
     </div>
     <nav class="main-nav" aria-label="Primary navigation">
-      <a href="index.html" aria-current="page">Applications</a>
-      <a href="map.html">Career Map</a>
+      <a href="applications.html">Applications</a>
+      <a href="index.html" aria-current="page">Career Map</a>
     </nav>
   </header>
 
   <main class="shell">
-    <section class="hero" aria-labelledby="page-title">
+    <section class="map-intro" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow">Internship applications</p>
-        <h1 id="page-title">Build your next yes.</h1>
-        <p class="lede">Keep a clear, manual record of where you have applied and what each opportunity can teach you. Then use the Career Map to turn skill-building into visible progress.</p>
+        <p class="eyebrow">Career map · sample journey</p>
+        <h1 id="page-title">Play the path to internship-ready.</h1>
+        <p>Start with quick, high-priority wins, then collect stronger evidence as the board climbs toward a thoughtful internship application.</p>
       </div>
-      <aside class="hero-note" aria-label="Tracker status">
-        <strong>Manual-first tracker</strong>
-        <p>Add entries yourself in this browser. URL import, AI analysis, and personal accounts are planned future features—not active tools.</p>
+      <aside class="goal-card" aria-label="Sample target role">
+        <span>Target role</span>
+        <strong>Data &amp; Analytics Intern</strong>
+        <p>Fictional roadmap · Last reviewed Sep 26, 2026</p>
       </aside>
     </section>
 
-    <aside class="notice" aria-label="Sample data notice"><strong>Sample data</strong><span>The applications below are fictional examples. Each entry names its current status and last-reviewed date.</span></aside>
+    <aside class="notice" aria-label="Sample data notice"><strong>Sample data</strong><span>This board is an illustrative career path, not verified hiring advice. Every stop and skill signal shows its status and last-reviewed date.</span></aside>
 
-    <section class="metrics" aria-label="Sample application summary">
-      <article class="metric"><strong id="activeCount">3</strong><span>sample opportunities</span></article>
-      <article class="metric"><strong>2</strong><span>skills in active focus</span></article>
-      <article class="metric"><strong>Sep 26</strong><span>latest sample review</span></article>
-    </section>
-
-    <section class="layout" id="applications" aria-label="Application tracker">
-      <section class="panel panel-pad" aria-labelledby="applications-title">
-        <div class="panel-head">
-          <div><h2 id="applications-title">Application board</h2><p class="subtext">Select an entry to inspect its goals and next step.</p></div>
-          <button class="button" id="showForm" type="button" aria-expanded="false" aria-controls="entryForm">+ Add manually</button>
+    <section class="map-shell" id="career-map" aria-label="Career journey map">
+      <section class="panel game-board" aria-labelledby="map-title">
+        <div class="map-header">
+          <div><h2 id="map-title">The internship quest</h2><p>Select a stop to reveal what it unlocks and the next useful move.</p></div>
+          <span class="map-progress">1 / 7 sample stops complete</span>
         </div>
-        <div class="app-list" id="applicationList" aria-live="polite"></div>
-
-        <form class="entry-form" id="entryForm" novalidate>
-          <div class="form-grid">
-            <label class="field">Organization <input id="company" name="company" required placeholder="e.g., Northline Studio"></label>
-            <label class="field">Role <input id="role" name="role" required placeholder="e.g., Product Intern"></label>
-            <label class="field">Status
-              <select id="status" name="status"><option>Planned</option><option>In progress</option><option>Submitted</option><option>Completed</option></select>
-            </label>
-            <label class="field">Last reviewed <input id="reviewed" name="reviewed" type="date" required></label>
-          </div>
-          <div class="form-actions"><button class="button" type="submit">Add to this view</button><button class="button secondary" id="cancelForm" type="button">Cancel</button></div>
-          <p class="form-hint">This temporary manual entry stays only in this browser view and resets on refresh.</p>
-        </form>
+        <div class="board-key" aria-label="Career map progression legend">
+          <span><i class="key-high" aria-hidden="true"></i>High priority &amp; easier first</span>
+          <span><i class="key-build" aria-hidden="true"></i>Harder proof later</span>
+        </div>
+        <div class="game-surface">
+          <svg class="board-track" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
+            <path class="track-shadow" d="M105 590 C125 540 195 410 320 403 S430 540 500 462 S720 440 650 343 S485 330 490 238 S585 150 670 119 S790 105 850 119"></path>
+            <path class="track-line" d="M105 590 C125 540 195 410 320 403 S430 540 500 462 S720 440 650 343 S485 330 490 238 S585 150 670 119 S790 105 850 119"></path>
+          </svg>
+          <div class="board-corner board-start"><b>Start</b><span>First win</span></div>
+          <div class="board-corner board-finish"><b>Finish</b><span>Internship-ready</span></div>
+          <div class="board-stops" id="milestoneList"></div>
+        </div>
       </section>
-
-      <aside class="panel detail" id="applicationDetail" aria-live="polite"></aside>
+      <aside class="panel map-detail" id="milestoneDetail" aria-live="polite"></aside>
     </section>
 
     <section class="future-strip" aria-label="Planned future features">
-      <article class="future"><span>Planned</span><h3>Import from URL / AI</h3><p>A future, permission-aware integration could summarize a job post after a secure backend and privacy review.</p></article>
-      <article class="future"><span>Planned</span><h3>Personal accounts</h3><p>Profiles and saved progress need a separate authentication and data-protection design before they can be added.</p></article>
+      <article class="future"><span>Planned</span><h3>Job-post skill matching</h3><p>Future URL/AI import may suggest relevant skills only after a separately approved secure integration exists.</p></article>
+      <article class="future"><span>Planned</span><h3>Saved personal progress</h3><p>Login-based journeys require a separate account system and privacy design; this demo does not store personal data.</p></article>
     </section>
   </main>
   <footer class="site-footer shell"><b>OrbitPath</b> is a static, fictional demonstration. No job post, personal data, URL, or account is collected.</footer>
-  <script src="applications.js"></script>
+  <script src="map.js"></script>
 </body>
 </html>
 
