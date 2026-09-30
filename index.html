@@ -39,8 +39,11 @@
     <section class="map-shell" id="career-map" aria-label="Career journey map">
       <section class="panel game-board" aria-labelledby="map-title">
         <div class="map-header">
-          <div><h2 id="map-title">The internship quest</h2><p>Select a stop to reveal what it unlocks and the next useful move.</p></div>
-          <span class="map-progress">1 / 7 sample stops complete</span>
+          <div class="quest-heading">
+            <button class="all-view" id="allView" type="button" aria-pressed="true">All view</button>
+            <div><h2 id="map-title">The internship quest</h2><p>Select a stop for details, or return here for the full journey.</p></div>
+          </div>
+          <span class="map-progress" id="totalProgress">33% total progress · 1 of 7 complete</span>
         </div>
         <div class="board-key" aria-label="Career map progression legend">
           <span><i class="key-high" aria-hidden="true"></i>High priority &amp; easier first</span>
