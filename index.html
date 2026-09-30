@@ -1,24 +1,78 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My next idea · The Understudy</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#f5f2e9;color:#20281f;font:18px/1.55 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:40px 6vw}header{display:flex;justify-content:space-between;border-bottom:1px solid #b8bcae;padding-bottom:22px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}.stage{display:grid;grid-template-columns:1.5fr 1fr;gap:7vw;align-items:center;min-height:65vh}h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(60px,8vw,112px);letter-spacing:-.06em;line-height:.96;margin:40px 0 25px}p{max-width:530px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase}.mark{height:280px;position:relative;display:grid;place-items:center}.mark span{position:absolute;width:160px;height:220px;border:2px solid #42613b;transform:rotate(var(--r));transition:transform .5s}.mark span:nth-child(1){--r:-25deg}.mark span:nth-child(2){--r:0deg;background:#dbe4be}.mark span:nth-child(3){--r:25deg}.mark:hover span{transform:rotate(calc(var(--r) * 1.3))}a{color:inherit;text-underline-offset:5px}.links{display:flex;flex-wrap:wrap;gap:24px;padding:25px 0}.primary{background:#263d24;color:#fff;padding:12px 20px;text-decoration:none}footer{border-top:1px solid #b8bcae;padding-top:24px;font-size:14px}a:focus-visible{outline:3px solid #a54919;outline-offset:5px}@media(max-width:650px){.stage{display:block;min-height:0}.mark{height:170px;margin:30px 0}.mark span{width:100px;height:140px}header{gap:20px}main{padding:25px 7vw}}@media(prefers-reduced-motion:reduce){.mark span{transition:none}.mark:hover span{transform:rotate(var(--r))}}.live{border-top:1px solid #b8bcae;padding:22px 0 4px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}.live code{flex:1 1 300px;min-width:0;background:#fff;border:1px solid #b8bcae;padding:11px 13px;font-size:14px;overflow-wrap:anywhere}.live button{min-height:44px;padding:11px 18px;font:inherit;font-weight:600;color:#fff;background:#263d24;border:0;cursor:pointer}.live button:focus-visible{outline:3px solid #a54919;outline-offset:5px}.live small{flex-basis:100%;font-size:14px;color:#4a5247}</style>
-<main><header><b>CPVC / The Understudy</b><span>Session 02 · Starter</span></header><section class="stage"><div><h1>A small site.<br>A real beginning.</h1><p>This is my working starter. My own one-page site and one useful interaction come next.</p><p class="eyebrow">Published first. Made mine next.</p></div><div class="mark" aria-hidden="true"><span></span><span></span><span></span></div></section><div class="live"><code id="liveurl">Open this page over http:// or https:// to see its address.</code><button id="copy" type="button">Copy link</button><small id="copyhint">This is the address you submit. Not your GitHub repository address.</small></div><div class="links"><a class="primary" href="https://calpolyvibecoding.com/portal">Submit my live URL ↗</a><a id="guide" href="https://github.com/calpolyvibecoding-01/cpvc-02-understudy-template#readme">Follow the build guide →</a><a href="examples/coast/">See the coastal example →</a></div><footer>Deploy this untouched starter, open the actual live URL, then confirm your portal submission. <strong>STOP 1:</strong> only then brief the agent and build your own idea. Keep the same root URL as your site grows.</footer></main>
-<script>
-(function(){
-  var box=document.getElementById('liveurl'),btn=document.getElementById('copy'),
-      hint=document.getElementById('copyhint'),guide=document.getElementById('guide');
-  var web=location.protocol==='http:'||location.protocol==='https:';
-  var url=web?location.origin+location.pathname:'';
-  if(web){box.textContent=url;}else{btn.hidden=true;hint.textContent='You are viewing this file directly. Publish it with GitHub Pages to get a real address.';}
-  var host=location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i),
-      repo=location.pathname.split('/').filter(Boolean)[0];
-  if(host&&repo){guide.href='https://github.com/'+host[1]+'/'+repo+'#readme';}
-  btn.addEventListener('click',function(){
-    function pick(){var r=document.createRange();r.selectNodeContents(box);
-      var s=window.getSelection();s.removeAllRanges();s.addRange(r);
-      hint.textContent='Link selected. Press Ctrl+C or Cmd+C to copy it.';}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(url).then(function(){hint.textContent='Copied. Paste it into the Link field in the portal.';},pick);
-    }else{pick();}
-  });
-})();
-</script>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A colorful, manual internship application tracker with career planning tools.">
+  <title>OrbitPath · Applications</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <a class="skip-link" href="#applications">Skip to application tracker</a>
+  <header class="app-header shell">
+    <div class="topline">
+      <a class="brand" href="index.html" aria-label="OrbitPath Applications home"><span class="brand-mark" aria-hidden="true">↗</span>OrbitPath</a>
+      <div class="workspace"><strong>Sample workspace</strong><br>Static demo · no account required</div>
+    </div>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="index.html" aria-current="page">Applications</a>
+      <a href="map.html">Career Map</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Internship applications</p>
+        <h1 id="page-title">Build your next yes.</h1>
+        <p class="lede">Keep a clear, manual record of where you have applied and what each opportunity can teach you. Then use the Career Map to turn skill-building into visible progress.</p>
+      </div>
+      <aside class="hero-note" aria-label="Tracker status">
+        <strong>Manual-first tracker</strong>
+        <p>Add entries yourself in this browser. URL import, AI analysis, and personal accounts are planned future features—not active tools.</p>
+      </aside>
+    </section>
+
+    <aside class="notice" aria-label="Sample data notice"><strong>Sample data</strong><span>The applications below are fictional examples. Each entry names its current status and last-reviewed date.</span></aside>
+
+    <section class="metrics" aria-label="Sample application summary">
+      <article class="metric"><strong id="activeCount">3</strong><span>sample opportunities</span></article>
+      <article class="metric"><strong>2</strong><span>skills in active focus</span></article>
+      <article class="metric"><strong>Sep 26</strong><span>latest sample review</span></article>
+    </section>
+
+    <section class="layout" id="applications" aria-label="Application tracker">
+      <section class="panel panel-pad" aria-labelledby="applications-title">
+        <div class="panel-head">
+          <div><h2 id="applications-title">Application board</h2><p class="subtext">Select an entry to inspect its goals and next step.</p></div>
+          <button class="button" id="showForm" type="button" aria-expanded="false" aria-controls="entryForm">+ Add manually</button>
+        </div>
+        <div class="app-list" id="applicationList" aria-live="polite"></div>
+
+        <form class="entry-form" id="entryForm" novalidate>
+          <div class="form-grid">
+            <label class="field">Organization <input id="company" name="company" required placeholder="e.g., Northline Studio"></label>
+            <label class="field">Role <input id="role" name="role" required placeholder="e.g., Product Intern"></label>
+            <label class="field">Status
+              <select id="status" name="status"><option>Planned</option><option>In progress</option><option>Submitted</option><option>Completed</option></select>
+            </label>
+            <label class="field">Last reviewed <input id="reviewed" name="reviewed" type="date" required></label>
+          </div>
+          <div class="form-actions"><button class="button" type="submit">Add to this view</button><button class="button secondary" id="cancelForm" type="button">Cancel</button></div>
+          <p class="form-hint">This temporary manual entry stays only in this browser view and resets on refresh.</p>
+        </form>
+      </section>
+
+      <aside class="panel detail" id="applicationDetail" aria-live="polite"></aside>
+    </section>
+
+    <section class="future-strip" aria-label="Planned future features">
+      <article class="future"><span>Planned</span><h3>Import from URL / AI</h3><p>A future, permission-aware integration could summarize a job post after a secure backend and privacy review.</p></article>
+      <article class="future"><span>Planned</span><h3>Personal accounts</h3><p>Profiles and saved progress need a separate authentication and data-protection design before they can be added.</p></article>
+    </section>
+  </main>
+  <footer class="site-footer shell"><b>OrbitPath</b> is a static, fictional demonstration. No job post, personal data, URL, or account is collected.</footer>
+  <script src="applications.js"></script>
+</body>
 </html>
+
