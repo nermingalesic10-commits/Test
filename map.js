@@ -18,9 +18,24 @@
   const statusClass = { 'Planned': 'planned', 'In progress': 'progress', 'Submitted': 'submitted', 'Completed': 'completed' };
   const list = document.querySelector('#milestoneList');
   const detail = document.querySelector('#milestoneDetail');
-  let selectedId = 'excel';
+  const allView = document.querySelector('#allView');
+  const mapShell = document.querySelector('#career-map');
+  const totalProgressLabel = document.querySelector('#totalProgress');
+  let selectedId = null;
 
-  if (!list || !detail) return;
+  if (!list || !detail || !allView || !mapShell || !totalProgressLabel) return;
+
+  function totalProgress() {
+    return Math.round(milestones.reduce((sum, milestone) => sum + milestone.progress, 0) / milestones.length);
+  }
+
+  function latestReview() {
+    return milestones.reduce((latest, milestone) => new Date(milestone.reviewed) > new Date(latest.reviewed) ? milestone : latest).reviewed;
+  }
+
+  function statusSummary(status) {
+    return milestones.filter(milestone => milestone.status === status).length;
+  }
 
   function node(milestone) {
     const selected = milestone.id === selectedId;
@@ -37,9 +52,26 @@
       '<small>Last reviewed: ' + skill.reviewed + ' · illustrative skill signal</small></article>';
   }
 
-  function render() {
-    list.innerHTML = milestones.map(node).join('');
-    const milestone = milestones.find(item => item.id === selectedId) || milestones[0];
+  function overviewItem(milestone) {
+    return '<button class="overview-item" type="button" data-milestone="' + milestone.id + '" aria-label="Open stop ' + milestone.step + ': ' + milestone.title + '">' +
+      '<span class="overview-step">Stop ' + milestone.step + '</span><strong>' + milestone.title + '</strong>' +
+      '<span class="overview-meta"><span class="status ' + statusClass[milestone.status] + '">' + milestone.status + '</span><b>' + milestone.progress + '%</b></span>' +
+      '<span class="reviewed">Last reviewed: ' + milestone.reviewed + '</span></button>';
+  }
+
+  function renderOverview() {
+    const overall = totalProgress();
+    detail.style.setProperty('--accent', '#6646d8');
+    detail.innerHTML = '<div class="detail-top overview-top"><p class="detail-kicker">Journey home · all view</p><h2>' + overall + '% total progress</h2><p>One combined view across all seven sample milestones.</p></div>' +
+      '<div class="detail-body"><p class="rule-line"><b>In progress</b> · Latest review: <b>' + latestReview() + '</b><br>Total progress is the equal-weight average of every milestone percentage.</p>' +
+      '<div class="progress-wrap overview-bar"><div class="progress-info"><span>Combined journey progress</span><b>' + overall + '%</b></div><div class="bar" style="--bar:#6646d8"><span style="width:' + overall + '%"></span></div></div>' +
+      '<div class="overview-counts"><span><b>' + statusSummary('Completed') + '</b> completed</span><span><b>' + statusSummary('In progress') + '</b> in progress</span><span><b>' + statusSummary('Planned') + '</b> planned</span></div>' +
+      '<p class="detail-label">Every checkpoint</p><div class="overview-grid">' + milestones.map(overviewItem).join('') + '</div>' +
+      '<p class="detail-label">Next focus</p><p class="detail-copy">Finish the Excel dashboard, then move into the SQL query lab. Both are high-priority building blocks for this sample target role.</p>' +
+      '<p class="detail-label">Skill signals</p><div class="skills">' + skills.map(skillCard).join('') + '</div></div>';
+  }
+
+  function renderMilestone(milestone) {
     detail.style.setProperty('--accent', milestone.color);
     detail.innerHTML = '<div class="detail-top"><p class="detail-kicker">' + milestone.priority + ' · ' + milestone.effort + '</p><h2>' + milestone.title + '</h2><p>' + milestone.caption + '</p></div>' +
       '<div class="detail-body"><p class="rule-line"><b>' + milestone.status + '</b> · Last reviewed: <b>' + milestone.reviewed + '</b><br>Fictional sample milestone · not verified career progress.</p>' +
@@ -49,10 +81,40 @@
       '<p class="detail-label">Sample achievements</p><div class="achievement-grid"><article class="achievement"><span class="badge">✦</span><strong>Direction set</strong><small>Completed · Last reviewed: Sep 10</small></article><article class="achievement"><span class="badge">▦</span><strong>Dashboard starter</strong><small>In progress · Last reviewed: Sep 26</small></article></div></div>';
   }
 
+  function render() {
+    const isAllView = selectedId === null;
+    const overall = totalProgress();
+    list.innerHTML = milestones.map(node).join('');
+    allView.setAttribute('aria-pressed', String(isAllView));
+    mapShell.classList.toggle('all-view', isAllView);
+    totalProgressLabel.textContent = overall + '% total progress · ' + statusSummary('Completed') + ' of ' + milestones.length + ' complete';
+
+    if (isAllView) {
+      renderOverview();
+      return;
+    }
+
+    const milestone = milestones.find(item => item.id === selectedId) || milestones[0];
+    renderMilestone(milestone);
+  }
+
+  function selectMilestone(id) {
+    selectedId = id;
+    render();
+  }
+
   list.addEventListener('click', event => {
     const button = event.target.closest('[data-milestone]');
-    if (!button) return;
-    selectedId = button.dataset.milestone;
+    if (button) selectMilestone(button.dataset.milestone);
+  });
+
+  detail.addEventListener('click', event => {
+    const button = event.target.closest('[data-milestone]');
+    if (button) selectMilestone(button.dataset.milestone);
+  });
+
+  allView.addEventListener('click', () => {
+    selectedId = null;
     render();
   });
 
