@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A game-board-inspired career map for internship skill and milestone progress.">
+  <title>OrbitPath · Career Map</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <a class="skip-link" href="#career-map">Skip to career map</a>
+  <header class="app-header shell">
+    <div class="topline">
+      <a class="brand" href="index.html" aria-label="OrbitPath Applications home"><span class="brand-mark" aria-hidden="true">↗</span>OrbitPath</a>
+      <div class="workspace"><strong>Sample workspace</strong><br>Static demo · no account required</div>
+    </div>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="index.html">Applications</a>
+      <a href="map.html" aria-current="page">Career Map</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Career map</p>
+        <h1 id="page-title">Make your path visible.</h1>
+        <p class="lede">Turn a dream internship into practical steps. Select a milestone to see what it unlocks, the skills it builds, and exactly where this sample plan was last reviewed.</p>
+      </div>
+      <aside class="hero-note" aria-label="Career goal">
+        <strong>Sample target role</strong>
+        <p>Data &amp; Analytics Intern · a fictional career plan designed to show how milestones, skill signals, and achievements can work together.</p>
+      </aside>
+    </section>
+
+    <aside class="notice" aria-label="Sample data notice"><strong>Sample data</strong><span>This is an illustrative career path, not a verified hiring plan. Every milestone and skill signal includes status and a last-reviewed date.</span></aside>
+
+    <section class="map-shell" id="career-map" aria-label="Career journey map">
+      <section class="panel map-board" aria-labelledby="map-title">
+        <div class="map-header"><div><h2 id="map-title">Your path to internship-ready</h2><p>Choose any stop on the map to inspect it.</p></div><span class="map-progress">2 / 6 milestones completed</span></div>
+        <div class="path" id="milestoneList" aria-live="polite"></div>
+      </section>
+      <aside class="panel map-detail" id="milestoneDetail" aria-live="polite"></aside>
+    </section>
+
+    <section class="future-strip" aria-label="Planned future features">
+      <article class="future"><span>Planned</span><h3>Job-post skill matching</h3><p>Future URL/AI import may suggest relevant skills only after a separately approved secure integration exists.</p></article>
+      <article class="future"><span>Planned</span><h3>Saved personal progress</h3><p>Login-based journeys require a separate account system and privacy design; this demo does not store personal data.</p></article>
+    </section>
+  </main>
+  <footer class="site-footer shell"><b>OrbitPath</b> is a static, fictional demonstration. No job post, personal data, URL, or account is collected.</footer>
+  <script src="map.js"></script>
+</body>
+</html>
+
