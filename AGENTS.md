@@ -19,7 +19,7 @@ After STOP 1, help the student propose and approve the six TARGET lines and one 
 
 ## My standing rule
 
-[One observable, student-approved rule that protects this project's purpose or experience.]
+Every application, goal, and skill-progress view must visibly state whether it is Planned, In progress, Submitted, or Completed and show a “Last reviewed” date, so users never mistake an aspiration or sample entry for a verified achievement.
 
 ## Workflow
 
