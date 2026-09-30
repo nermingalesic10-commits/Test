@@ -99,8 +99,8 @@ h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.035em; }
 .app-title strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .93rem; }
 .app-title span { display: block; overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; font-size: .78rem; }
 .app-meta { text-align: right; }
-.reviewed { display: block; margin-top: 4px; color: var(--muted); font-size: .71rem; }
-.status { display: inline-block; border-radius: 999px; padding: 4px 7px; color: var(--status-ink); background: var(--status-bg); font-size: .68rem; font-weight: 900; letter-spacing: .03em; }
+.reviewed { display: block; margin-top: 4px; color: var(--muted); font-size: .75rem; }
+.status { display: inline-block; border-radius: 999px; padding: 4px 7px; color: var(--status-ink); background: var(--status-bg); font-size: .75rem; font-weight: 900; letter-spacing: .03em; }
 .status.planned { --status-bg: #f0ebff; --status-ink: #5a39bd; }
 .status.progress { --status-bg: #def6f2; --status-ink: #087c6e; }
 .status.submitted { --status-bg: #e5efff; --status-ink: #225ec7; }
@@ -202,5 +202,123 @@ h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.035em; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+/* Board-game career map */
+.map-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: 26px;
+  align-items: end;
+  padding: 29px 0 20px;
+}
+.map-intro h1 { margin: 0; max-width: 760px; font-size: clamp(2.15rem, 4.6vw, 4rem); line-height: .99; letter-spacing: -.065em; }
+.map-intro p:not(.eyebrow) { max-width: 720px; margin: 10px 0 0; color: var(--muted); font-size: 1rem; }
+.goal-card { padding: 18px; border: 1px solid #d7ccff; border-radius: 18px; background: linear-gradient(135deg, #f4f0ff, #edf4ff); }
+.goal-card span { display: block; color: #6248c8; font-size: .78rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+.goal-card strong { display: block; margin-top: 5px; color: var(--navy); font-size: 1.08rem; letter-spacing: -.025em; }
+.goal-card p { margin: 5px 0 0; color: #5f6680; font-size: .8rem; }
+
+.game-board { padding: 25px; overflow: hidden; }
+.board-key { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; color: var(--muted); font-size: .76rem; font-weight: 750; }
+.board-key span { display: inline-flex; align-items: center; gap: 6px; }
+.board-key i { width: 9px; height: 9px; border-radius: 50%; }
+.key-high { background: var(--sun); box-shadow: 0 0 0 4px #fff3d2; }
+.key-build { background: #b03b99; box-shadow: 0 0 0 4px #ffeaf8; }
+.game-surface {
+  position: relative;
+  isolation: isolate;
+  min-height: 660px;
+  margin-top: 16px;
+  overflow: hidden;
+  border: 1px solid #e0e7f2;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fbfdff 0%, #f6f3ff 52%, #eef9f7 100%);
+}
+.game-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: .45;
+  background-image: radial-gradient(#c6d2e5 1px, transparent 1px), linear-gradient(120deg, transparent 48%, rgba(255,255,255,.72) 48% 52%, transparent 52%);
+  background-size: 16px 16px, 54px 54px;
+  pointer-events: none;
+}
+.board-track { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
+.track-shadow { fill: none; stroke: #e0e7f2; stroke-width: 31; stroke-linecap: round; }
+.track-line { fill: none; stroke: #6b53dc; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 2 17; }
+.board-corner {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  padding: 8px 10px;
+  border: 1px solid #d8e0f0;
+  border-radius: 12px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 7px 16px rgba(34,58,103,.1);
+  font-size: .7rem;
+  line-height: 1.15;
+}
+.board-corner b { color: var(--navy); font-size: .77rem; }
+.board-corner span { margin-top: 2px; color: var(--muted); }
+.board-start { left: 2.5%; bottom: 2.5%; border-color: #d7ccff; }
+.board-finish { top: 2.5%; right: 2.5%; border-color: #b9c8f5; }
+.board-stops { position: absolute; inset: 0; z-index: 4; }
+.board-stop {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: clamp(104px, 11vw, 112px);
+  min-height: 105px;
+  padding: 9px 9px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(151,166,196,.45);
+  border-radius: 17px;
+  color: var(--ink);
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 10px 20px rgba(43,67,112,.12);
+  text-align: left;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.board-stop:hover { transform: translate(-50%, -50%) translateY(-3px); border-color: var(--node); }
+.board-stop[aria-pressed="true"] { border-color: var(--node); box-shadow: 0 0 0 4px var(--node-soft), 0 13px 24px rgba(43,67,112,.17); }
+.stop-number {
+  float: left;
+  display: grid;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  place-items: center;
+  border-radius: 9px;
+  color: white;
+  background: var(--node);
+  font-size: .82rem;
+  font-weight: 900;
+}
+.stop-top { display: grid; min-height: 25px; grid-template-columns: 1fr auto; gap: 3px; align-items: start; }
+.priority { color: var(--node); font-size: .56rem; font-weight: 900; letter-spacing: .04em; line-height: 1.12; text-transform: uppercase; }
+.board-stop .status { padding: 3px 4px; font-size: .54rem; line-height: 1.1; white-space: nowrap; }
+.board-stop strong { display: block; clear: both; margin-top: 7px; font-size: .72rem; line-height: 1.13; letter-spacing: -.015em; }
+.board-stop .reviewed { margin-top: 6px; font-size: .58rem; line-height: 1.12; }
+.map-detail .detail-top { min-height: 185px; }
+
+@media (max-width: 1100px) {
+  .map-intro, .map-shell { grid-template-columns: 1fr; }
+  .map-detail { position: static; }
+}
+@media (max-width: 860px) {
+  .map-intro { padding-top: 25px; }
+  .goal-card { max-width: 520px; }
+}
+@media (max-width: 650px) {
+  .game-board { padding: 19px 14px; }
+  .game-surface { min-height: auto; padding: 12px; }
+  .board-track, .board-corner { display: none; }
+  .board-stops { position: static; display: grid; gap: 10px; }
+  .board-stop { position: static; width: 100%; min-height: 0; transform: none; }
+  .board-stop:hover { transform: translateY(-2px); }
+  .board-stop strong { font-size: .92rem; }
+  .board-stop .reviewed { font-size: .73rem; }
 }
 
