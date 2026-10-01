@@ -21,18 +21,23 @@ After STOP 1, help the student propose and approve the six TARGET lines and one 
 
 Every application, goal, and skill-progress view must visibly state whether it is Planned, In progress, Submitted, or Completed and show a “Last reviewed” date, so users never mistake an aspiration or sample entry for a verified achievement.
 
+## Approved scoped exception for this branch
+
+The student explicitly approved the narrowly scoped Cloudflare Worker and Workers AI role-title draft described in SPEC.md for the build/internship-career-journey branch. It may generate a reviewable draft only; it must keep the guardrails in SPEC.md, have no browser secret, no persistence or accounts, no job-post URL import, and no deployment or publishing change without later human approval.
+
 ## Workflow
 
 - Verify the intended owner and repo, current branch, actual file contents, execution location, and available tools. Prove a usable preview instead of promising a particular browser.
 - If key choices are missing, ask a few focused questions. Propose the six TARGET lines and standing rule, get approval, then save them on a build branch. Do not silently choose the student's purpose or alter the guardrails.
 - Read the saved SPEC and applicable AGENTS before building and before a follow-up change. Explain the relevant rule briefly.
 - Build one page and one primary interaction with ordinary HTML, CSS, and JavaScript plus approved local assets. Do not impose the coastal example's topic, data, or colors.
-- Preserve `examples/`, shared teaching docs, and publishing settings during a student's personal build. Changes to these require an explicit maintainer request. Keep the instructor example self-contained.
+- Preserve examples/, shared teaching docs, and publishing settings during a student's personal build. Changes to these require an explicit maintainer request. Keep the instructor example self-contained.
 - Separate reference imagery from factual sources. Use licensed or approved assets; label illustrative or fictional content. Do not fabricate metrics, testimonials, integrations, live conditions, or verification.
-- Do not add secrets, private records, runtime model calls, a backend, a required paid service, or unsolicited analytics.
+- Do not add secrets, private records, runtime model calls, a backend, a required paid service, or unsolicited analytics, except for the scoped current-branch approval above.
 - Use safe text rendering, keyboard-operable controls, visible focus, readable contrast, responsive layouts, and reduced-motion support. Prefer short, purposeful transitions over perpetual motion.
 - Run relevant functional and boundary checks. Preview the actual proposed branch before approval and report checks not run. Screenshots or code diffs alone do not establish interactive correctness.
 - After human preview approval, open a PR only when requested. Summarize changed files and tests. Do not merge or publish without explicit approval.
 - After the human merges, verify the same registered root Pages URL. Do not request a duplicate portal submission merely because the content changed.
 
 Done means the approved TARGET works and the student can explain their rule and result.
+

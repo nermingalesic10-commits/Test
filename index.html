@@ -12,7 +12,7 @@
   <header class="app-header shell">
     <div class="topline">
       <a class="brand" href="index.html" aria-label="OrbitPath Career Map home"><span class="brand-mark" aria-hidden="true">↗</span>OrbitPath</a>
-      <div class="workspace"><strong>Sample workspace</strong><br>Static demo · no account required</div>
+      <div class="workspace"><strong>Local workspace</strong><br>No account · no saved progress</div>
     </div>
     <nav class="main-nav" aria-label="Primary navigation">
       <a href="index.html" aria-current="page">Career Map</a>
@@ -29,12 +29,30 @@
       </div>
       <aside class="goal-card" aria-label="Sample target role">
         <span>Target role</span>
-        <strong>Data &amp; Analytics Intern</strong>
-        <p>Fictional roadmap · Last reviewed Sep 26, 2026</p>
+        <strong id="goalRole">Data &amp; Analytics Intern</strong>
+        <p id="goalMeta">Fictional roadmap · Last reviewed Sep 26, 2026</p>
       </aside>
     </section>
 
-    <aside class="notice" aria-label="Sample data notice"><strong>Sample data</strong><span>This board is an illustrative career path, not verified hiring advice. Every stop and skill signal shows its status and last-reviewed date.</span></aside>
+    <aside class="notice" id="dataNotice" aria-label="Sample data notice"><strong>Sample data</strong><span>This board is an illustrative career path, not verified hiring advice. Every stop and skill signal shows its status and last-reviewed date.</span></aside>
+
+    <section class="panel role-planner" aria-labelledby="role-planner-title">
+      <div>
+        <p class="eyebrow">Optional AI draft</p>
+        <h2 id="role-planner-title">Start from a dream role</h2>
+        <p>Enter a role title to create a suggested seven-stop quest. You can review and edit it before it changes this board.</p>
+      </div>
+      <form class="role-form" id="roleDraftForm" novalidate>
+        <label class="field" for="roleInput">Dream role
+          <input id="roleInput" name="role" type="text" minlength="3" maxlength="80" autocomplete="off" placeholder="For example: Data Analyst Intern" required>
+        </label>
+        <button class="button" id="generateDraft" type="submit">Create draft quest</button>
+        <p class="planner-hint">Enter only a role title—never a job link, résumé, company details, or personal information.</p>
+        <p class="planner-status" id="plannerStatus" role="status" aria-live="polite">The AI draft service is not connected to this preview yet.</p>
+      </form>
+    </section>
+
+    <section class="panel draft-review" id="draftReview" aria-live="polite" hidden></section>
 
     <section class="map-shell" id="career-map" aria-label="Career journey map">
       <section class="panel game-board" aria-labelledby="map-title">
@@ -63,11 +81,12 @@
     </section>
 
     <section class="future-strip" aria-label="Planned future features">
-      <article class="future"><span>Planned</span><h3>Job-post skill matching</h3><p>Future URL/AI import may suggest relevant skills only after a separately approved secure integration exists.</p></article>
+      <article class="future"><span>Planned</span><h3>Job-post skill matching</h3><p>This role-title draft does not import job URLs. URL-based matching needs a separately approved, permission-aware integration.</p></article>
       <article class="future"><span>Planned</span><h3>Saved personal progress</h3><p>Login-based journeys require a separate account system and privacy design; this demo does not store personal data.</p></article>
     </section>
   </main>
-  <footer class="site-footer shell"><b>OrbitPath</b> is a static, fictional demonstration. No job post, personal data, URL, or account is collected.</footer>
+  <footer class="site-footer shell"><b>OrbitPath</b> is a prototype. The sample board is fictional; a configured draft request sends only a role title to the Worker and does not use job-post URLs, accounts, or saved personal progress.</footer>
+  <script src="runtime-config.js"></script>
   <script src="map.js"></script>
 </body>
 </html>
