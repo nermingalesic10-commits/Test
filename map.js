@@ -411,7 +411,13 @@
 
   updateJourneyLabels();
   if (draftEndpoint) {
-    setPlannerStatus('Local Worker preview is configured. It creates a clearly labeled local example draft, not an AI result.', 'info');
+    const localDraftEndpoint = /^http:\/\/(127\.0\.0\.1|localhost)(?::\d+)?$/i.test(draftEndpoint);
+    setPlannerStatus(
+      localDraftEndpoint
+        ? 'Local Worker preview is configured. It creates a clearly labeled local example draft, not an AI result.'
+        : 'AI role-draft service is configured. Submit a role title to create a reviewable draft.',
+      'info'
+    );
   }
   render();
 })();
